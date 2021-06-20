@@ -1,5 +1,7 @@
-package com.example.testkotlin
-class Model {
+package com.example.testkotlin.MVVMTest
+
+class MVVMModel {
+
     private val list: MutableList<Int>
 
     constructor() {
@@ -9,5 +11,4 @@ class Model {
     fun addValueOfIndex(index: Int) : Int {
         return ++list[index]
     }
-
 }

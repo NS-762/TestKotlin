@@ -1,32 +1,26 @@
 package com.example.testkotlin
 
-class Presenter {
+import moxy.MvpPresenter
+
+
+class Presenter : MvpPresenter<IView>() {
 
     private lateinit var model: Model
-    private lateinit var iView: IView
 
-    constructor(iView: IView) {
-        this.iView = iView
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
         model = Model()
     }
 
-    fun buttonClick(idBtn: Int) {
-        var newValue: Int
-        when (idBtn) {
-            R.id.btn1 -> {
-                newValue = calcNewValue(model.getValueOfIndex(0))
-                model.setValueOfIndex(0, newValue)
-                iView.setButtonText(R.id.btn1, "Количество = " + newValue)
-            }
-            R.id.btn2 -> {
-                newValue = calcNewValue(model.getValueOfIndex(1))
-                model.setValueOfIndex(1, newValue)
-                iView.setButtonText(R.id.btn2, "Количество = " + newValue)
-            }
-        }
+    override fun attachView(view: IView?) {
+        super.attachView(view)
     }
 
-    private fun calcNewValue(value: Int) : Int {
-        return value + 1
+    fun buttonOneClick() {
+        viewState.setButtonOneText("Количество = " + model.addValueOfIndex(0))
+    }
+
+    fun buttonTwoClick() {
+        viewState.setButtonOneText("Количество = " + model.addValueOfIndex(1))
     }
 }
