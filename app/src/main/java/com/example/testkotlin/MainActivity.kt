@@ -1,9 +1,17 @@
 package com.example.testkotlin
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.subjects.PublishSubject
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 
 class MainActivity : MvpAppCompatActivity(), IView {
 
@@ -16,8 +24,6 @@ class MainActivity : MvpAppCompatActivity(), IView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-/*        presenter = Presenter(this)*/
 
         btn1 = findViewById(R.id.btn1)
         btn1.setOnClickListener {
@@ -36,5 +42,27 @@ class MainActivity : MvpAppCompatActivity(), IView {
 
     override fun setButtonTwoText(str: String) {
         btn2.setText(str)
+    }
+
+    fun createStringObserver(): Observer<String> {
+        val observer = object: Observer<String> {
+            override fun onNext(s: String) {
+                println(s)
+            }
+
+            override fun onComplete() {
+                println("onComplete")
+            }
+
+            override fun onError(e: Throwable) {
+                println("onError")
+            }
+
+            override fun onSubscribe(d: Disposable?) {
+                println("onSubscribe")
+            }
+        }
+
+        return observer
     }
 }

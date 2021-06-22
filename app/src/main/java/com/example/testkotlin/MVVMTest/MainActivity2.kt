@@ -2,8 +2,9 @@ package com.example.testkotlin.MVVMTest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
-import androidx.lifecycle.Observer
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.testkotlin.R
 
@@ -11,6 +12,10 @@ class MainActivity2 : AppCompatActivity() {
 
     private lateinit var btnMVVM1: Button
     private lateinit var btnMVVM2: Button
+    private lateinit var btnMVVM3: Button
+    private lateinit var btnAddValue: Button
+    private lateinit var textView: TextView
+
     private lateinit var myViewModel: MyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +23,7 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
 
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        textView = findViewById(R.id.textView)
 
         btnMVVM1 = findViewById(R.id.btn_MVVM_1)
         btnMVVM1.setOnClickListener{
@@ -26,20 +32,48 @@ class MainActivity2 : AppCompatActivity() {
 
         btnMVVM2 = findViewById(R.id.btn_MVVM_2)
         btnMVVM2.setOnClickListener{
-            myViewModel.buttonTwoClick(it.id)
+            myViewModel.buttonTwoClick()
         }
 
-        myViewModel.apply {
-            firstCounter.observeForever { setBtnMVVMOneText(it) }
-            secondCounter.observeForever { setBtnMVVMTwoText(it) }
+        btnMVVM3 = findViewById(R.id.btn_MVVM_3)
+        btnMVVM3.setOnClickListener{
+            myViewModel.buttonThreeClick()
         }
+
+        btnAddValue = findViewById(R.id.btn_MVVM_add_value)
+        btnAddValue.setOnClickListener {
+            myViewModel.buttonAddValueClick()
+        }
+
+
+        myViewModel.apply {
+            firstLiveData.observeForever { setBtnMVVMOneText(it) }
+            secondLiveData.observeForever { setBtnMVVMTwoText(it) }
+            thirdLiveData.observeForever { setTextInTextView(it) }
+        }
+
+
+        myViewModel.getSubject().subscribe({
+            Log.e("ObservableInterval", "$it")
+        }, {
+
+        }, {
+            Log.e("ObservableInterval", "Complete")
+        })
+
     }
 
     fun setBtnMVVMOneText(str: String) {
-        btnMVVM1.setText(str)
+        btnMVVM1.text = str
     }
 
     fun setBtnMVVMTwoText(str: String) {
-        btnMVVM2.setText(str)
+        btnMVVM2.text = str
     }
+
+    fun setTextInTextView(str: String) {
+        val newText =  (textView.text).toString() + str
+        textView.text = newText
+    }
+
 }
