@@ -1,17 +1,11 @@
 package com.example.testkotlin
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.subjects.PublishSubject
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
-import java.util.*
-import java.util.concurrent.TimeUnit
-import kotlin.concurrent.thread
 
 class MainActivity : MvpAppCompatActivity(), IView {
 

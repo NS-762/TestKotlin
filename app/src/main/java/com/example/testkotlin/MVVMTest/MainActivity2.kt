@@ -30,21 +30,7 @@ class MainActivity2 : AppCompatActivity() {
             myViewModel.buttonOneClick()
         }
 
-        btnMVVM2 = findViewById(R.id.btn_MVVM_2)
-        btnMVVM2.setOnClickListener{
-            myViewModel.buttonTwoClick()
-        }
-
-        btnMVVM3 = findViewById(R.id.btn_MVVM_3)
-        btnMVVM3.setOnClickListener{
-            myViewModel.buttonThreeClick()
-        }
-
-        btnAddValue = findViewById(R.id.btn_MVVM_add_value)
-        btnAddValue.setOnClickListener {
-            myViewModel.buttonAddValueClick()
-        }
-
+        myViewModel.loadRecipes("chicken")
 
         myViewModel.apply {
             firstLiveData.observeForever { setBtnMVVMOneText(it) }
