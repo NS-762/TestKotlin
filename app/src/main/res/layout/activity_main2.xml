@@ -4,52 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MVVMTest.MainActivity2">
+    tools:context=".activity.MainActivity">
 
-    <Button
-        android:id="@+id/btn_MVVM_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Счетчик 1 = 0"
+    <EditText
+        android:id="@+id/ET_input_product"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_MVVM_2"
+        android:id="@+id/BTN_load_recipes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Счетчик 2 = 0"
+        android:text="@string/find_recipes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_MVVM_1" />
-
-
-    <Button
-        android:id="@+id/btn_MVVM_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Получить текст"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_MVVM_2" />
+        app:layout_constraintTop_toBottomOf="@id/ET_input_product" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/TV_recipes"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_MVVM_3"/>
+        app:layout_constraintTop_toBottomOf="@id/BTN_load_recipes"/>
 
-    <Button
-        android:id="@+id/btn_MVVM_add_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Добавить 999"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
