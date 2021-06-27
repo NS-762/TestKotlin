@@ -1,7 +1,7 @@
 package com.example.testkotlin
 
 
-data class RecipeRequest(
+data class RecipeModel(
     val hits: MutableList<Hits>
 )
 
@@ -10,5 +10,5 @@ data class Hits(
 )
 
 data class Recipe(
-    val label: String
+    val recipeName: String
 )

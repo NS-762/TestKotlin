@@ -19,5 +19,5 @@ data class HitsApi(
 data class RecipeApi(
     @SerializedName("label")
     @Expose
-    val label: String
+    val recipeName: String
 )

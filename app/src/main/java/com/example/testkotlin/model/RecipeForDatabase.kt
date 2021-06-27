@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity (tableName = "recipes_table")
 data class RecipeForDatabase(
-    var label: String
+    var recipeName: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
