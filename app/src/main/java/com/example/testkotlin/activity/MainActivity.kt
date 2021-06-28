@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        // TODO: 28.06.2021 DI 
         recipeDatabase = RecipeDatabase.getRecipeDatabase(this);
 
         mainActivityViewModel = ViewModelProvider(

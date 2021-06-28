@@ -11,9 +11,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class Loader() {
 
+    // TODO: 28.06.2021 DI
     private val mapRecipe: MapRecipe = MapRecipe()
 
-    fun loadRecipesFromInternet(product: String, recipeDatabase: RecipeDatabase?): Single<RecipeModel> {
+    fun loadRecipesFromInternet(
+        product: String,
+        recipeDatabase: RecipeDatabase?
+    ): Single<RecipeModel> {
 
         val response = RetrofitInstance.api.loadRecipes(product, APP_ID, APP_KEY)
             .map { recipeRequestApi ->
@@ -47,15 +51,12 @@ class Loader() {
         return response
     }
 
-    fun loadRecipesFromDB(recipeDatabase: RecipeDatabase?) : Single<RecipeModel> {
-        val singleRecipeModel: Single<RecipeModel>
-        recipeDatabase.let {
-            singleRecipeModel = recipeDatabase!!.getRecipeDao().getAllRecipesInSingle()
-                .map { listRecipesForDB ->
-                    mapRecipe.mapRecipeForDBToRecipeModel(listRecipesForDB)
-                    //Преобразовать список рецептов из БД в модель
-                }
-        }
-        return singleRecipeModel
+    // TODO: 28.06.2021 БД DI
+    fun loadRecipesFromDB(recipeDatabase: RecipeDatabase): Single<RecipeModel> {
+        return recipeDatabase.getRecipeDao().getAllRecipesInSingle()
+            .map { listRecipesForDB ->
+                mapRecipe.mapRecipeForDBToRecipeModel(listRecipesForDB)
+                //Преобразовать список рецептов из БД в модель
+            }
     }
 }

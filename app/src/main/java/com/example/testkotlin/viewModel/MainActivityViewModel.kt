@@ -40,12 +40,15 @@ class MainActivityViewModel(val recipeDatabase: RecipeDatabase?) : ViewModel() {
     }
 
     fun loadRecipesFromDB() {
-        loader.loadRecipesFromDB(recipeDatabase)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { recipeModel ->
-                hitsRecipesLiveData.value = recipeModel.hits
-            }
+
+        if (recipeDatabase != null) {
+            loader.loadRecipesFromDB(recipeDatabase)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { recipeModel ->
+                    hitsRecipesLiveData.value = recipeModel.hits
+                }
+        }
     }
 
     fun getHitsRecipesLiveData(): LiveData<MutableList<Hits>> = hitsRecipesLiveData

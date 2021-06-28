@@ -8,6 +8,6 @@ import dagger.Component
 interface AppComponent {
 
     fun injectToMainActivityViewModel(mainActivityViewModel: MainActivityViewModel)
-    fun getLoader(): Loader
 
+    fun getLoader(): Loader
 }
