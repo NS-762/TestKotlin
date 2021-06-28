@@ -10,12 +10,24 @@ import com.example.testkotlin.model.RecipeForDatabase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
 class MainActivityViewModel(val recipeDatabase: RecipeDatabase?) : ViewModel() {
 
     private val hitsRecipesLiveData = MutableLiveData<MutableList<Hits>>()
-    private val loader: Loader = Loader()
-    val disposable: Disposable? = null
+
+    @Inject
+    lateinit var loader: Loader
+
+    init {
+        App.appComponent.injectToMainActivityViewModel(this)
+    }
+
+
+/*    private lateinit var loader: Loader
+    init {
+        loader = App.appComponent.getLoader()
+    }*/
 
     fun loadRecipesFromInternet(product: String) {
 
@@ -34,7 +46,6 @@ class MainActivityViewModel(val recipeDatabase: RecipeDatabase?) : ViewModel() {
             .subscribe { recipeModel ->
                 hitsRecipesLiveData.value = recipeModel.hits
             }
-
     }
 
     fun getHitsRecipesLiveData(): LiveData<MutableList<Hits>> = hitsRecipesLiveData
