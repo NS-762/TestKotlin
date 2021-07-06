@@ -10,25 +10,25 @@ import com.example.testkotlin.model.RecipeForDatabase
 abstract class RecipeDatabase : RoomDatabase() {
     abstract fun getRecipeDao(): RecipeDao
 
-    companion object {
-        private var instance: RecipeDatabase? = null
-
-        fun getRecipeDatabase(context: Context): RecipeDatabase? {
-            if (instance == null) {
-
-                instance = Room
-                    .databaseBuilder(
-                        context.applicationContext,
-                        RecipeDatabase::class.java, "recipeDatabase"
-                    )
-                    .fallbackToDestructiveMigration()
-                    .build()
-            }
-            return instance
-        }
-
-        fun destroyDataBase() {
-            instance = null
-        }
-    }
+//    companion object {
+//        private var instance: RecipeDatabase? = null
+//
+//        fun getRecipeDatabase(context: Context): RecipeDatabase? {
+//            if (instance == null) {
+//
+//                instance = Room
+//                    .databaseBuilder(
+//                        context.applicationContext,
+//                        RecipeDatabase::class.java, "recipeDatabase"
+//                    )
+//                    .fallbackToDestructiveMigration()
+//                    .build()
+//            }
+//            return instance
+//        }
+//
+//        fun destroyDataBase() {
+//            instance = null
+//        }
+//    }
 }

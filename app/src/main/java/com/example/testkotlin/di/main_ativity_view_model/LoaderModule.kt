@@ -1,4 +1,4 @@
-package com.example.testkotlin.di
+package com.example.testkotlin.di.main_ativity_view_model
 
 import com.example.testkotlin.Loader
 import dagger.Module
@@ -11,5 +11,4 @@ class LoaderModule {
     fun provideLoader() : Loader {
         return Loader()
     }
-
 }

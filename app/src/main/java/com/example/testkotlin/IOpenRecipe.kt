@@ -5,8 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface IOpenRecipe {
-    // TODO: 28.06.2021 Почему упало
-    @GET("/sddsaffas")
+    @GET("/search")
     fun loadRecipes(
         @Query("q") product: String,
         @Query("app_id") appId: String,
