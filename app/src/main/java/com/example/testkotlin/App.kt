@@ -5,7 +5,7 @@ import com.example.testkotlin.di.AppComponent
 import com.example.testkotlin.di.AppModule
 import com.example.testkotlin.di.DaggerAppComponent
 import com.example.testkotlin.di.loader.LoaderComponent
-import com.example.testkotlin.di.main_ativity_view_model.MainActivityVMComponent
+import com.example.testkotlin.di.main_ativity_view_model.MainActivityComponent
 
 class App : Application() {
 
@@ -15,7 +15,7 @@ class App : Application() {
     }
 
     private lateinit var appComponent: AppComponent
-    private var mainActivityVMComponent: MainActivityVMComponent? = null
+    private var mainActivityComponent: MainActivityComponent? = null
     private var loaderComponent: LoaderComponent? = null
 
     override fun onCreate() {
@@ -32,9 +32,9 @@ class App : Application() {
         return loaderComponent
     }
 
-    fun createMainActivityVMComponent(): MainActivityVMComponent? {
-        mainActivityVMComponent = appComponent.getMainActivityVMComponentFactory().create()
-        return mainActivityVMComponent
+    fun createMainActivityComponent(): MainActivityComponent? {
+        mainActivityComponent = appComponent.getMainActivityComponentFactory().create()
+        return mainActivityComponent
     }
 
 }

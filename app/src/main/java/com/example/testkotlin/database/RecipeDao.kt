@@ -22,8 +22,8 @@ interface RecipeDao {
     @Query("SELECT * FROM recipes_table")
     fun getAllRecipes() : MutableList<RecipeForDatabase>
 
-    @Query("SELECT * FROM recipes_table")
-    fun getAllRecipesInSingle() : Single<MutableList<RecipeForDatabase>>
+//    @Query("SELECT * FROM recipes_table")
+//    fun getAllRecipesInSingle() : Single<MutableList<RecipeForDatabase>>
 
     @Query("SELECT * FROM recipes_table WHERE recipeName=:recipeName")
     fun getRecipeOnRecipeName(recipeName: String) : RecipeForDatabase
